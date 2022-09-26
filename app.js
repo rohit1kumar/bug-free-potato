@@ -3,6 +3,7 @@ require('dotenv').config({ path: 'config/config.env' });
 const express = require('express');
 const app = express();
 
+const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
@@ -17,6 +18,7 @@ const { connectDB } = require('./config/db');
 const pet = require('./routes/pet');
 
 // security middleware
+app.use(cors());
 app.use(helmet());
 app.use(rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
