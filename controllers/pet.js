@@ -96,7 +96,7 @@ const updateData = asyncWrapper(async (req, res) => {
 
     if (!data) throw new ErrorHandler(`No data found with petId ${petId}`, 404);
 
-    res.status(200).json({ status: 'success', data });
+    res.status(200).json({ status: 'success', message:'Data updated succesfully', data });
 });
 
 const deleteData = asyncWrapper(async (req, res) => {

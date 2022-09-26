@@ -38,7 +38,7 @@ app.use(notFound);
 app.use(errorMiddleware);
 
 //  enviroment variables
-const url = process.env.MONGO_URI;
+const url = process.env.MONGO_URI || 'mongodb://localhost:27017/pet';
 const port = process.env.PORT || 3000;
 
 const startServer = async (url) => {

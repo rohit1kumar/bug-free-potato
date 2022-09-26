@@ -16,6 +16,10 @@ const errorMiddleware = async (err, req, res, next) => {
         err.statusCode = 400;
         if (req.file) await fs.unlink(req.file.path); // delete file from server if validation error
     }
+    if(err.name === 'CastError') {
+        err.message = `No data found with petId ${err.value}`;
+        err.statusCode = 404;
+    }
 
     res.status(err.statusCode).json({
         success: false,
