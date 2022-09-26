@@ -82,9 +82,10 @@ const getData = asyncWrapper(async (req, res) => {
 const updateData = asyncWrapper(async (req, res) => {
 
     const { petId } = req.params;
-    const { name, type, breed, age } = req.body;
+    let { name, type, breed, age } = req.body;
 
-    if (!name && !type && !breed && !age) throw new ErrorHandler('Please provide fields to update', 400);
+    // remove empty fields and whitespace
+    if (!name.trim() && !type.trim() && !breed.trim() && !age.trim()) throw new ErrorHandler('Please provide fields to update', 400);
 
     const data = await Pet.findByIdAndUpdate(petId, { name, type, breed, age }, { new: true, runValidators: true }).select('-__v').lean();
 
