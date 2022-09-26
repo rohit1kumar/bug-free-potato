@@ -19,8 +19,8 @@ const petSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Breed is required'],
         trim: true,
-        // minlength: [3, 'Bread must be at least 3 characters long'],
-        // maxlength: [30, 'Bread must be at most 30 characters long'],
+        // minlength: [3, 'Breed must be at least 3 characters long'],
+        // maxlength: [30, 'Breed must be at most 30 characters long'],
     },
     age: {
         type: Number,

@@ -23,14 +23,14 @@ const addData = asyncWrapper(async (req, res, next) => {
 
 const getAllData = asyncWrapper(async (req, res) => {
 
-    const { limit, page, sort, name, type, age, bread } = req.query;
+    const { limit, page, sort, name, type, age, breed } = req.query;
 
     /*QUERY BUILDER*/
     const queryObj = {};
     if (name) queryObj.name = { $regex: name, $options: 'i' }; // i for case insensitive
     if (type) queryObj.type = type;
     if (age) queryObj.age = age;
-    if (bread) queryObj.bread = bread;
+    if (breed) queryObj.breed = breed;
 
     const query = Pet.find(queryObj);
 
@@ -54,7 +54,7 @@ const getAllData = asyncWrapper(async (req, res) => {
     query.skip(skip).limit(parseLimit).select('-__v');
 
     console.time('query time for getAllData');
-    const data = await query.lean(); 
+    const data = await query.lean();
     console.timeEnd('query time for getAllData');
 
     if (data.length === 0) throw new ErrorHandler('No data found', 404);
