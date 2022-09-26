@@ -22,7 +22,51 @@ paths:
       summary: Find All Pets
       description: Find all pets, which can be searched using the name, age, type, and breed. Endpoint supports pagination (limit & page) and sorting (sort).
       operationId: FindAllPets
-      parameters: []
+      # query parameters
+      parameters:
+      - name: name
+        in: query
+        description: Name of the pet
+        required: false
+        schema:
+          type: string
+      - name: age
+        in: query
+        description: Age of the pet
+        required: false
+        schema:
+          type: integer
+      - name: type
+        in: query
+        description: Type of the pet
+        required: false
+        schema:
+          type: string
+      - name: breed
+        in: query
+        description: Breed of the pet
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of pets to return
+        required: false
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        description: Sort by name, age, type, or breed
+        required: false
+        schema:
+          type: string
+
       responses:
         '200':
           description: ''
