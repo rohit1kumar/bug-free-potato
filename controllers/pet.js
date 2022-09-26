@@ -84,8 +84,13 @@ const updateData = asyncWrapper(async (req, res) => {
     const { petId } = req.params;
     let { name, type, breed, age } = req.body;
 
+    if (!name && !type && !breed && !age) throw new ErrorHandler('Please provide fields to update', 400);
+
     // remove empty fields and whitespace
-    if (!name.trim() && !type.trim() && !breed.trim() && !age.trim()) throw new ErrorHandler('Please provide fields to update', 400);
+    if (name) name = name.trim();
+    if (type) type = type.trim();
+    if (breed) breed = breed.trim();
+    if (age) age = age.trim();
 
     const data = await Pet.findByIdAndUpdate(petId, { name, type, breed, age }, { new: true, runValidators: true }).select('-__v').lean();
 
@@ -104,6 +109,5 @@ const deleteData = asyncWrapper(async (req, res) => {
 
     res.status(200).json({ status: 'success', message: 'Data deleted successfully', data });
 });
-
 
 module.exports = { addData, getAllData, getData, updateData, deleteData };

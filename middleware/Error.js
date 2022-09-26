@@ -14,7 +14,7 @@ const errorMiddleware = async (err, req, res, next) => {
     if (err.name === 'ValidationError') {
         err.message = Object.values(err.errors).map((val) => val.message).join(', ');
         err.statusCode = 400;
-        await fs.unlink(req.file.path); // delete file from server if validation error occurs
+        if (req.file) await fs.unlink(req.file.path); // delete file from server if validation error
     }
 
     res.status(err.statusCode).json({
