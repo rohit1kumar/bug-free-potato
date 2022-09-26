@@ -2,16 +2,15 @@ require('dotenv').config({ path: 'config/config.env' });
 
 const express = require('express');
 const app = express();
-
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const YAML = require('yamljs');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = YAML.load('./swagger.yaml');
 
-// error handler middleware
 const { errorMiddleware } = require('./middleware/Error');
 const { notFound } = require('./utils/notFound');
-
-//  database connection
 const { connectDB } = require('./config/db');
 
 // router
@@ -28,6 +27,10 @@ app.use(rateLimit({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.send('<p>Welcome to Pet API<br>Visit <a href="/docs">/docs</a> to see the API documentation</p>');
+});
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/pet', pet);
 
 // loading error handler middleware

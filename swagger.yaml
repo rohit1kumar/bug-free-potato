@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Pet API
+  description: API that takes an excel file as input, parses it, and stores the data in the database.
+  contact: {}
+  version: '1.0'
+
+servers:
+- url: https://fastjob.up.railway.app/api/v1
+  variables: {}
+
+paths:
+
+  /pet:
+    get:
+      tags:
+      - Pet
+      summary: Find All Pets
+      description: Find all pets, which can be searched using the name, age, type, and breed. Endpoint supports pagination (limit & page) and sorting (sort).
+      operationId: FindAllPets
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    post:
+      tags:
+      - Pet
+      summary: Add pets
+      description: Upload the excel sheet using the 'file' keyword.
+      operationId: Addpets
+      requestBody:
+        content:
+           multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+
+  /pet/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Pet ID
+      tags:
+      - Pet
+      summary: Find pet by petId
+      description: Find a pet by petId
+      operationId: FindpetbypetId
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Pet ID
+      tags:
+      - Pet
+      summary: Delete by petId
+      description: Delete a pet by petId
+      operationId: DeletebypetId
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    patch:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Pet ID
+      tags:
+      - Pet
+      summary: Update by petId
+      description: >-
+        Update by using petId.
+
+        Name, age, type, and breed can be updated.
+      operationId: UpdatebypetId
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+
+              type: object
+
+              properties:
+                name:
+                  type: string
+
+                breed:
+                  type: string
+
+                age:
+                  type: integer
+
+                type:
+                  type: string
+
+
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
