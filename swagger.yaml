@@ -6,7 +6,7 @@ info:
   version: '1.0'
 
 servers:
-- url: https://fastjob.up.railway.app/api/v1
+- url: https://pet.up.railway.app/api/v1
   variables: {}
 
 paths:

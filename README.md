@@ -4,7 +4,7 @@
 - Document the steps to get your code up and running on localhost
 - If possible, deploy your solution to a service like heroku, aws, etc and use MongoDB Atlas (This step is optional, but will give you brownie points) -->
 
-## API that takes an excel file as input, parses it and stores the data in the database and returns the data in JSON format.
+## API that takes an excel file as input, parses it and stores the data in the database and returns the data in JSON format, deployed on [Railway](https://pet.up.railway.app/)
 
 ---
 
@@ -20,9 +20,9 @@
 ### Run the server
     $ npm start
 
-    
 
-## Test the Endpoints on [Swagger](https://fastjob.up.railway.app/)
+
+## Test the Endpoints on [Swagger](https://pet.up.railway.app/)
 
 ---
 
