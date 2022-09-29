@@ -26,6 +26,10 @@
 
 ### Go to http://localhost:3000/ to see the app running.
 
+*Note: choose local server from the dropdown as given below to test API in swagger*
+<br>
+<img src="https://i.imgur.com/MDgGNJY.png" width="400" height="200">
+
 ---
 
 ## API Endpoints
